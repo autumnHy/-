@@ -60,7 +60,8 @@ def cart(request):
                 cart_goods = Goods.objects.filter(pk=goods[0]).first()
                 goods_number = goods[1]
                 total_price = goods[1] * cart_goods.shop_price
-                goods_all.append([ cart_goods,goods_number, total_price])
+                is_select = goods[2]
+                goods_all.append([ cart_goods, goods_number, total_price, is_select])
             # 获取商品对象
             # 前台需要商品信息，商品的个数，商品的总价
             # 后台返回结构[[goods objects, number, total_price],[goods objects, number, total_price]]
@@ -127,6 +128,7 @@ def is_select(request):
                     for good in session_goods:
                         if good[2]:
                             is_count += 1
+
                     return JsonResponse({'code': 202, 'is_count': is_count})
 
 

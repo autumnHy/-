@@ -19,7 +19,7 @@
         {% for goods in goods_all %}
             <ul class="cart_list_td clearfix">
                 <li class="col01"><input type="checkbox" id="is_select{{ goods.0.id }}" onclick="is_select({{ goods.0.id }});"  name=""
-                                         {% if goods.2 %}checked{% endif %}></li>
+                                         {% if goods.3 %}checked{% endif %}></li>
                 <li class="col02"><img src="/media/{{ goods.0.goods_front_image }}"></li>
                 <li class="col03">{{ goods.0.name }}<br><em>{{ goods.0.shop_price }}元/500g</em></li>
                 <li class="col04">500g</li>
@@ -48,11 +48,11 @@
                 data: {'good_id': good_id},
                 success: function(data){
                     if(data.code == '201'){
-                        $('#is_select'+good_id).attr('checked',false)
+                        $('#is_select'+good_id).prop('checked',false)
                         $('#is_count').html(data.is_count)
                     }
                     if(data.code == '202'){
-                        $('#is_select'+good_id).attr('checked',true)
+                        $('#is_select'+good_id).prop('checked',true)
                         $('#is_count').html(data.is_count)
                     }
                 },
